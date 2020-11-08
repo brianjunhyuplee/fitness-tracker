@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Workouts = require("models/workout.js");
+const Workouts = require("../models/workout.js");
 
 // getting info from api
 router.get("/api/workouts", (req, res) => {
@@ -32,7 +32,7 @@ router.put("/api/Workouts/:id", (req, res) => {
 
 // get workouts within range
 router.get("/api/Workouts/range", (req, res) => {
-    db.Workout.find({})
+    Workouts.find({})
       .then(dbWorkout => { res.json(dbWorkout); })
       .catch(err => { res.json(err); });
   });
