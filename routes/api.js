@@ -2,26 +2,36 @@ const router = require("express").Router();
 const Workouts = require("models/workout.js");
 
 // getting info from api
-router.get("/api/workout", (req, res) => {
+router.get("/api/workouts", (req, res) => {
     Workouts.find({})
-    .then(db => { res.json(db); })
+    .then(dbWorkout => { res.json(dbWorkout); })
     .catch(err => {res.json(err);});
 });
 
 // posting workout to the api
-router.post("/api/workout", ({ body }, res) => {
+router.post("/api/workouts", ({ body }, res) => {
   Workouts.create(body)
-    .then(dbTransaction => {
-      res.json(dbTransaction);
+    .then(dbWorkout => {
+      res.json(dbWorkout);
     })
     .catch(err => {
       res.status(400).json(err);
     });
 });
 
-//
+// put request for id
+router.put("/api/Workouts/:id", (req, res) => {
+    console.log(req.body)
+    Workouts.findByIdAndUpdate(
+      req.params.id,
+      { $push: { exercises: req.body }},
+      { new: true })
+      .then(dbWorkout => { res.json(dbWorkout); })
+      .catch(err => { res.json(err); });
+  });
 
 // posting to stats page
+
 
 
 // router.post("/api/workout/bulk", ({ body }, res) => {
