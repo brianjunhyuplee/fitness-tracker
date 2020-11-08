@@ -25,15 +25,9 @@ Website that keeps track of workouts in the past, present, and future. User can 
 ## Usage
  
 To use the application, simply click on the deployed link. 
-[https://still-ridge-23968.herokuapp.com/](https://still-ridge-23968.herokuapp.com/)
+[https://murmuring-oasis-96238.herokuapp.com/](https://murmuring-oasis-96238.herokuapp.com/)
 
 ## Process
-
-### Create Necessary Files
-
-The below image shows all the necessary files for building this application
-![Image of all necessary files](public/assets/images/nec.png)
-
 
 ### Schema
 
