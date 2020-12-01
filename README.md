@@ -40,72 +40,41 @@ USE databasename;
 
 CREATE TABLE tablename
 (
+    Key: Value
     ...
 );
 ```
 A seed is not necessary but may be nice to include for testing purposes.
 
-### server.js and connection.js
+### Routes
 
-These two files will be used to link to the website.
-Method will not be detailed in this README as it has been covered in previous repositories.
+Two main files were created within the routes directory. The api.js file was made to find and save workouts from the user. The html.js file was made to render the correct HTML files.
 
-### Making Template HTMLs Using Handlebars
+1. API Routing
 
-#### main.handlebars
+While creating the API routing, two components must be initialized: model and express.Router().
+Depending on what each function is intended to do, router will call either a put, post, or get request.
+*The code below shows how one can be implemented*
 
-This is the main template for the HTML. Create head section of html and leave body mostly blank.
-
-*By using the below code, the contents of body can be inputted later*
-```bash
-<body>
-	{{{ body }}}
-</body>
+```js
+router.get("/api/routename", (req, res) => {
+	modelname.find({})
+	.then(varName => {res.json(varName); })
+});
 ```
 
-src tags can be added to this for further styling and functionality (js and css)
+2. HTML Routing
 
-#### index.handlebars
+The HTML routing will require two components as well: path, and express.Router().
+By implementing router.get("/urlpathname",(req,res)) the application will be able to start building pathways from the URL link to the corresponding HTML file. This can be defined using res.sendFile().
+*The code below shows how this can be done for the homepage*
 
-This file will set the main contents of body for the website. It will fill the "body" portion of the HTML.
+```js
+router.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+});
+```
 
-As seen in the main.handlebars file, there should be sections for later inputs within the index as well. Also by utilizing # a comparison can be called.
-
-*The below image shows some implementations*
-
-![image of handlebars usage](public/assets/images/index.png)
-
-#### burger-block.handlebars
-
-This file prints a list of burgers based on whether they have been consumed or not.
-
-### Orm
-
-Require the previously created connection.js file. Two initial functions are created to ease some processes that will be performed multiple times
-
-- printQuestionMarks(num) takes in a number and adds that number of question marks to the query string
-
-- objToSql(ob) takes the value in a colimn and concacts it and makes it readable for the query string
-
-**Three main functions are defined to be used in a different file.**
-
-- selectAll: This function takes the table and returns all values from the the table
-
-- insertOne: This function inserts one row to the table by using putting together different elements called in the parameter of the function. These elements are used for the query string
-
-- updateOne: This function takes a condition, finds the object that matches the condition, and changes its value(s)
-
-### Controller
-
-The controller file takes in express, router and a file called burger.js which will be explained later.
-
-This file connects the handlebars with the burger.js file to insert appropriate elements.
-
-By using the functions stated in the Orm section, it can pass in parameters from the HTML and give out a response.
-
-### Model(burger.js)
-
-This file connects Orm with the controller. It will define the functions stated in orm.js and preset the table formatting for desireable results.
 
 ## License
 
