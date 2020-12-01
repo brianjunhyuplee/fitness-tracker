@@ -29,6 +29,11 @@ To use the application, simply click on the deployed link.
 
 ## Process
 
+### Server
+
+To create a server compatible with mongoose, express, mongoose, and morgan must all be required.
+This process is covered in previous repos.
+
 ### Schema
 
 First create a database and a table template that includes characteristics that may be necessary.
